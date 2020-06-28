@@ -9,14 +9,15 @@ import './food_catagory.dart';
 import '../Wigets/circle_container.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../Model/food_model.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  
- Food foodModel;
+  Food food;
+  Secondfood secondfood;
 
   Widget _rowContainer({Function whenPress}) {
     return GestureDetector(
@@ -173,24 +174,48 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-
- @override
+  @override
   void initState() {
-  super.initState();
+    super.initState();
+
     Firestore.instance
         .collection('food')
         .document("pjCgmWbz6hw0Cto4uBCh")
         .snapshots()
-        .listen((event) {
-         // print(event['foodName']);
-          foodModel=Food(
+        .listen(
+      (event) {
+        print(event['foodPrice']);
+        setState(() {
+          food = Food(
             foodName: event["foodName"],
             foodType: event["foodtitle"],
-            price:event["50"],
-            rating: event["4.5"],
+            price: event["foodPrice"],
+            rating: event["rating"],
             reathings: event["Reatings"],
+            image: event["image"],
           );
-    });  
+        });
+        // print(event['foodName']);
+      },
+    );
+    Firestore.instance
+        .collection('food')
+        .document("Vbj26j21QGsTtu5Qf9ca")
+        .snapshots()
+        .listen((event) {
+      print(event['foodPrice']);
+      print(event['foodName']);
+      setState(() {
+        secondfood = Secondfood(
+          foodName: event["foodName"],
+          foodType: event["foodType"],
+          price: event["foodPrice"],
+          rating: event["rating"],
+          reathings: event["Reatings"],
+          image: event["image"],
+        );
+      });
+    });
   }
 
   @override
@@ -222,7 +247,7 @@ class _HomePageState extends State<HomePage> {
                   height: 80,
                   child: DrawerHeader(
                     child: Text(
-                      'Last Change',
+                      'Tastee',
                       style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontSize: 25,
@@ -358,10 +383,11 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         children: <Widget>[
                           CircleContainer(
-                            foodName:foodModel.foodName,
-                            foodType:foodModel.foodType,
-                            price:foodModel.price,
-                            ratingPoint: foodModel.rating,
+                            foodName: food.foodName,
+                            foodType: food.foodType,
+                            foodPrice: food.price,
+                            foodRating: food.rating,
+                            foodImage: food.image,
                             whenPress: () {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
@@ -369,10 +395,11 @@ class _HomePageState extends State<HomePage> {
                             },
                           ),
                           CircleContainer(
-                            foodName: 'Chiken Brost',
-                            foodType: '7 Ocean Hotal',
-                            price: 13,
-                            ratingPoint: 23,
+                            foodName: secondfood.foodName,
+                            foodType: secondfood.foodType,
+                            foodPrice: secondfood.price,
+                            foodRating: secondfood.rating,
+                            foodImage: secondfood.image,
                             whenPress: () {
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(

@@ -25,7 +25,7 @@ class _SignUpState extends State<SignUp> {
   bool _gender = false;
   bool _isMale = true;
   Future getImage() async {
-    final getImage = await ImagePicker().getImage(source: ImageSource.gallery);
+    final getImage = await ImagePicker().getImage(source: ImageSource.camera);
     setState(() {
       cameraImage = File(getImage.path);
     });

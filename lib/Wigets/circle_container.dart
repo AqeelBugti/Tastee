@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 class CircleContainer extends StatelessWidget {
   final String foodName;
   final String foodType;
-  final double price;
-  final double ratingPoint;
+  final double foodPrice;
+  final double foodRating;
   final Function whenPress;
+  final String foodImage;
   CircleContainer(
-      {this.whenPress,
-      this.foodName,
-      this.foodType,
-      this.price,
-      this.ratingPoint});
+      {
+      this.whenPress,
+      @required this.foodName,
+      @required this.foodType,
+      @required this.foodPrice,
+      @required this.foodImage,
+      @required this.foodRating});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,7 +56,7 @@ class CircleContainer extends StatelessWidget {
                             width: 3,
                           ),
                           Text(
-                            " ${ratingPoint.toString()}",
+                            "${foodRating.toString()}",
                             style: TextStyle(fontSize: 12),
                           ),
                           Container(
@@ -61,12 +64,12 @@ class CircleContainer extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
-                                Text("Resthing",
+                                Text('Reatings',
                                     style: TextStyle(
                                       fontSize: 12,
                                     )),
                                 Text(
-                                  "\$ ${price.toString()}",
+                                  "\$ ${foodPrice.toString()}",
                                   style: TextStyle(
                                       fontSize: 18,
                                       color: Theme.of(context).accentColor),
@@ -87,7 +90,7 @@ class CircleContainer extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(left: 90),
               child: CircleAvatar(
-                backgroundImage: AssetImage("images/chicken.jpg"),
+                backgroundImage: NetworkImage(foodImage),
                 radius: 62,
                 backgroundColor: Colors.yellow,
               ),

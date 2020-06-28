@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import './homepage.dart';
 import '../Wigets/RaisedButton.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../Model/food_model.dart';
 class DetailPage extends StatefulWidget {
   @override
   _DetailPageState createState() => _DetailPageState();
@@ -9,8 +10,8 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   int count = 1;
-
-  Widget _chickenBrostWidget(context) {
+  Food food;
+  Widget _chickenBrostWidget({context,String foodName,String foodType}) {
     return Container(
       height: 80,
       child: Column(
@@ -18,14 +19,14 @@ class _DetailPageState extends State<DetailPage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Text(
-            'Chicken Brost',
+            foodName,
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).primaryColor),
           ),
           Text(
-            'Maraine Star Hotal',
+            foodType,
             style: TextStyle(fontSize: 19, fontWeight: FontWeight.w300),
           ),
         ],
@@ -204,16 +205,40 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  Widget _circle() {
+  Widget _circle({String image}) {
     return Padding(
       padding: EdgeInsets.only(left: 90),
       child: CircleAvatar(
-        backgroundImage: AssetImage("images/chicken.jpg"),
+        backgroundImage: NetworkImage(image),
         radius: 140,
       ),
     );
   }
+   
+ @override
+  void initState() {
+    super.initState();
 
+      Firestore.instance
+          .collection('food')
+          .document("pjCgmWbz6hw0Cto4uBCh")
+          .snapshots()
+          .listen((event) {
+        print(event['foodPrice']);
+        // print(event['foodName']);
+        setState(() {
+            food = Food(
+          foodName: event["foodName"],
+          foodType: event["foodtitle"],
+          price: event["foodPrice"],
+          rating: event["rating"],
+          reathings: event["Reatings"],
+          image: event["image"],
+        );
+      });
+        });
+      
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -257,7 +282,7 @@ class _DetailPageState extends State<DetailPage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
-                             _chickenBrostWidget(context),
+                             _chickenBrostWidget(context: context,foodName: food.foodName,foodType: food.foodType),
                               _countAndPrice(context),
                               _weightAndkg(context),
                               _coloriesAndCcal(context),
@@ -271,7 +296,9 @@ class _DetailPageState extends State<DetailPage> {
                     height: 170,
                     color: Color(0xfffef6fa),
                   ),
-                  _circle(),
+                  _circle(
+                    image:food.image 
+                  ),
                 ],
               ),
               _raisedButton(context),
