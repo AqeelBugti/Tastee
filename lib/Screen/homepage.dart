@@ -222,7 +222,7 @@ class _HomePageState extends State<HomePage> {
                   height: 80,
                   child: DrawerHeader(
                     child: Text(
-                      'Zero',
+                      'Good Food',
                       style: TextStyle(
                           color: Theme.of(context).primaryColor,
                           fontSize: 25,
