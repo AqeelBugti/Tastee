@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "835209105130",
-    "firebase_url": "https://kaamkaryaar.firebaseio.com",
-    "project_id": "kaamkaryaar",
-    "storage_bucket": "kaamkaryaar.appspot.com"
+    "project_number": "160590051999",
+    "firebase_url": "https://tasteefood-e8931.firebaseio.com",
+    "project_id": "tasteefood-e8931",
+    "storage_bucket": "tasteefood-e8931.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:835209105130:android:bb4214a68f035a86321193",
+        "mobilesdk_app_id": "1:160590051999:android:77ee0bbfea5e9659abc0aa",
         "android_client_info": {
           "package_name": "com.example.tastee"
         }
       },
       "oauth_client": [
         {
-          "client_id": "835209105130-abav4tc71soucuaqs4om39qavc6v05od.apps.googleusercontent.com",
+          "client_id": "160590051999-vbk2emlbatdnuakh2v64g33diugp215c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBWLuQ975L-RqCrmyZSboPeAYivAjifzKY"
+          "current_key": "AIzaSyDZ32J99cBS0q36X3zC6lsjo1RZBEj1UkM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "835209105130-abav4tc71soucuaqs4om39qavc6v05od.apps.googleusercontent.com",
+              "client_id": "160590051999-vbk2emlbatdnuakh2v64g33diugp215c.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

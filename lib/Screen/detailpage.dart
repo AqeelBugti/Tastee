@@ -221,7 +221,7 @@ class _DetailPageState extends State<DetailPage> {
 
       Firestore.instance
           .collection('food')
-          .document("pjCgmWbz6hw0Cto4uBCh")
+          .document("cy8NaZqapxmsynmY33IP")
           .snapshots()
           .listen((event) {
         print(event['foodPrice']);

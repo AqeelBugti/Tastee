@@ -180,11 +180,11 @@ class _HomePageState extends State<HomePage> {
 
     Firestore.instance
         .collection('food')
-        .document("pjCgmWbz6hw0Cto4uBCh")
+        .document("cy8NaZqapxmsynmY33IP")
         .snapshots()
         .listen(
       (event) {
-        print(event['foodPrice']);
+        print(event['foodName']);
         setState(() {
           food = Food(
             foodName: event["foodName"],
@@ -200,11 +200,9 @@ class _HomePageState extends State<HomePage> {
     );
     Firestore.instance
         .collection('food')
-        .document("Vbj26j21QGsTtu5Qf9ca")
+        .document("2c8YJEjOg0KUK9EQY7dO") ///// Chicken Broast document///
         .snapshots()
         .listen((event) {
-      print(event['foodPrice']);
-      print(event['foodName']);
       setState(() {
         secondfood = Secondfood(
           foodName: event["foodName"],

@@ -41,7 +41,7 @@ class _FoodCatagoryState extends State<FoodCatagory> {
     super.initState();
     Firestore.instance
         .collection('food')
-        .document("pjCgmWbz6hw0Cto4uBCh")
+        .document("cy8NaZqapxmsynmY33IP") ///// Pasta Cheese
         .snapshots()
         .listen((event) {
       print(event['foodPrice']);
@@ -59,7 +59,7 @@ class _FoodCatagoryState extends State<FoodCatagory> {
 
     Firestore.instance
         .collection('food')
-        .document("Vbj26j21QGsTtu5Qf9ca")
+        .document("2c8YJEjOg0KUK9EQY7dO") /////Chicken Broast
         .snapshots()
         .listen((event) {
       print(event['foodPrice']);
